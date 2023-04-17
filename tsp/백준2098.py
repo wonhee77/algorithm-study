@@ -4,7 +4,6 @@ n = int(sys.stdin.readline())
 arr = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 dp = [[0] * (1 << n) for _ in range(n)]
 
-
 def dfs(x, visited):
     if visited == 1:
         if arr[0][x]:

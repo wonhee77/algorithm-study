@@ -14,17 +14,16 @@ for _ in range(N):
 
 def bfs(x, y):
     queue = deque()
-    queue.append([x, y])
+    queue.append((x, y))
     cnt = 0
     while queue:
-        popleft = queue.popleft()
-        x, y = popleft[0], popleft[1]
+        x, y = queue.popleft()
         if (visited[x][y] is False) & (graph[x][y] == 1):
             visited[x][y] = True
             cnt += 1
             for i in range(4):
                 if (0 <= x + dx[i] < N) & (0 <= y + dy[i] < N):
-                    queue.append([x + dx[i], y + dy[i]])
+                    queue.append((x + dx[i], y + dy[i]))
     return cnt
 
 

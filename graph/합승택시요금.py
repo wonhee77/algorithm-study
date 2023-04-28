@@ -7,8 +7,10 @@ def solution(n, s, a, b, fares):
         q = []
         heapq.heappush(q, (distance[start], start))
 
+        print(start)
         while q:
             fare_now, current_des = heapq.heappop(q)
+            print("fare_now", fare_now, "current_des", current_des)
             for next_des, fare_next in graph[current_des]:
                 if distance[next_des] > fare_now + fare_next:
                     distance[next_des] = fare_now + fare_next

@@ -6,31 +6,33 @@ test_count = int(sys.stdin.readline())
 for _ in range(test_count):
     command = sys.stdin.readline()
     length = int(sys.stdin.readline())
-    arr = sys.stdin.readline()[1:-2]
-    queue = deque()
-    if arr != '':
-        a = list(map(int, arr.split(',')))
-        for b in a:
-            queue.append(b)
-    command = command.replace('RR', '')
+    queue = deque(sys.stdin.readline().lstrip('[').rstrip('\n').rstrip(']').split(','))
+    if length == 0:
+        queue = deque()
+
+    reverse = False
     error = False
-    for i in range(len(command)):
-        c = command[i]
+    for c in command:
         if c == 'R':
-            queue.reverse()
+            if reverse:
+                reverse = False
+            else:
+                reverse = True
         if c == 'D':
             if not queue:
                 error = True
                 break
-            queue.popleft()
+            if reverse:
+                queue.pop()
+            else:
+                queue.popleft()
+
     if error:
         print('error')
     else:
-        answer = '['
-        while queue:
-            num = queue.popleft()
-            answer += str(num)
-            if queue:
-                answer += ','
-        answer += ']'
-        print(answer)
+        if reverse:
+            queue.reverse()
+            print('[' + ','.join(queue) + ']')
+        else:
+            print('[' + ','.join(queue) + ']')
+

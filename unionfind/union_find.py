@@ -1,15 +1,13 @@
-def mark_set(n):
-    return [i for i in range(n)]
+def make_set(n):
+    return [i for i in range(n + 1)]
 
-parent = mark_set(10)
+parent = make_set(5)
 
 def find(x):
     if x == parent[x]:
         return x
-
     parent[x] = find(parent[x])
     return parent[x]
-
 
 def union(x, y):
     x = find(x)
@@ -17,7 +15,6 @@ def union(x, y):
     if x == y:
         return
     parent[y] = x
-
 
 '''
 union-find 알고리즘 서로소 부분집합들로 나눠진 원소들에 대한 정보를 저장하고 조작하는 자료구조이다.
